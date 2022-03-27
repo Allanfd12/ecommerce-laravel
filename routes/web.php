@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomePageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +14,4 @@ use App\Http\Controllers\HomePageController;
 |
 */
 
-Route::get('/', [HomePageController::class,'index']);
+Route::get('/',[\App\Http\Livewire\HomeComponent::class, '__invoke']);
