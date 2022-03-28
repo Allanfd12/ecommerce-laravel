@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[\App\Http\Livewire\HomeComponent::class, '__invoke']);
+Route::get('/',[\App\Http\Livewire\HomeComponent::class, '__invoke'])->name('home');
+Route::get('/shop',[\App\Http\Livewire\ShopComponent::class, '__invoke'])->name('shop');
+Route::get('/cart',[\App\Http\Livewire\CartComponent::class, '__invoke'])->name('cart');
+Route::get('/checkout',[\App\Http\Livewire\CheckoutComponent::class, '__invoke'])->name('checkout');
+
