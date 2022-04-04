@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +18,13 @@ Route::get('/shop',[\App\Http\Livewire\ShopComponent::class, '__invoke'])->name(
 Route::get('/cart',[\App\Http\Livewire\CartComponent::class, '__invoke'])->name('cart');
 Route::get('/checkout',[\App\Http\Livewire\CheckoutComponent::class, '__invoke'])->name('checkout');
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
