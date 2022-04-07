@@ -18,13 +18,19 @@ Route::get('/shop',[\App\Http\Livewire\ShopComponent::class, '__invoke'])->name(
 Route::get('/cart',[\App\Http\Livewire\CartComponent::class, '__invoke'])->name('cart');
 Route::get('/checkout',[\App\Http\Livewire\CheckoutComponent::class, '__invoke'])->name('checkout');
 
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+// grupo de rotas de usuários autenticados
+/*Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+*/
+//autenticação normal
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/user/dashboard', [\App\Http\Livewire\User\UserDashboardComponent::class, '__invoke'])->name('user.dashboard');
+
+});
+//autenticação para admins
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
+    Route::get('/admin/dashboard', [\App\Http\Livewire\Admin\AdminDashboardComponent::class, '__invoke'])->name('admin.dashboard');
 });
