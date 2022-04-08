@@ -1,3 +1,7 @@
+## Projeto de criação de um back-end/ecommerce utilizando Livewire, Jetstream e Laravel 9
+Adaptação do curso Ecommerce com Laravel 8(https://youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
