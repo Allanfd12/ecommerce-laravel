@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+
+    public function showFormattedPrice()
+    {
+        return 'R$ ' . number_format($this->valor, 2, ',', '.');
+    }
 }
