@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('shot_description')->nullable();
+            $table->string('short_description')->nullable();
             $table->text('description');
             $table->decimal('regular_price');
             $table->decimal('sale_price')->nullable();

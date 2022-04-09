@@ -15,7 +15,15 @@ class ProductComponent extends Component
 
     public function render()
     {
-        return view('livewire.product-component',['product'=>Product::where('slug',$this->slug)->first()])->layout('layouts.padrao');
+        $produto = Product::where('slug',$this->slug)->first();
+        $popular_products = Product::inRandomOrder()->limit(4)->get();
+        $related_products = Product::where('category_id',$produto->category_id)->inRandomOrder()->limit(4)->get();
+        return view('livewire.product-component',
+        [
+            'product'=>$produto,
+            'popular_products'=>$popular_products,
+            'related_products'=>$related_products
+        ])->layout('layouts.padrao');
 
     }
 }
