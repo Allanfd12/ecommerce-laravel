@@ -13,6 +13,9 @@ class Product extends Model
 
     public function showFormattedPrice()
     {
-        return 'R$ ' . number_format($this->valor, 2, ',', '.');
+        if($this->sale_price != null) {
+            return 'R$ ' . number_format($this->sale_price, 2, ',', '.');   
+        }
+        return 'R$ ' . number_format($this->regular_price, 2, ',', '.');
     }
 }
