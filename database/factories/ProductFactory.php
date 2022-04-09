@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'regular_price' => $this->faker->randomFloat(2, 1, 100),
             'sale_price' => $this->faker->randomFloat(2, 1, 100),
             'sku' => $this->faker->unique()->numberBetween(1, 100),
-            'stok_status' => $this->faker->randomElement(['in_stock', 'out_of_stock']),
+            'stock_status' => $this->faker->randomElement(['in_stock', 'out_of_stock']),
             'featured' => $this->faker->boolean,
             'quantity' => $this->faker->randomDigit,
             'image' => 'digital_'.$this->faker->numberBetween(1, 22).'.jpg',

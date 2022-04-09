@@ -17,6 +17,7 @@ Route::get('/',[\App\Http\Livewire\HomeComponent::class, '__invoke'])->name('hom
 Route::get('/shop',[\App\Http\Livewire\ShopComponent::class, '__invoke'])->name('shop');
 Route::get('/cart',[\App\Http\Livewire\CartComponent::class, '__invoke'])->name('cart');
 Route::get('/checkout',[\App\Http\Livewire\CheckoutComponent::class, '__invoke'])->name('checkout');
+Route::get('/product/{slug}',[\App\Http\Livewire\ProductComponent::class, '__invoke'])->name('product.detail');
 
 // grupo de rotas de usuários autenticados
 /*Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {

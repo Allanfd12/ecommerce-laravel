@@ -66,12 +66,12 @@
                         <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                             <div class="product product-style-3 equal-elem ">
                                 <div class="product-thumnail">
-                                    <a href="detail.html" title="{{$product->name}}">
+                                    <a href="{{route('product.detail',['slug'=>$product->slug])}}" title="{{$product->name}}">
                                         <figure><img src="{{asset('assets/images/products/'.$product->image)}}" alt="{{$product->name}}"></figure>
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="#" class="product-name"><span>{{$product->name}}</span></a>
+                                    <a href="{{route('product.detail',['slug'=>$product->slug])}}" class="product-name"><span>{{$product->name}}</span></a>
                                     <div class="wrap-price"><span class="product-price">{{$product->showFormattedPrice()}}</span></div>
                                     <a href="#" class="btn add-to-cart">Add To Cart</a>
                                 </div>
@@ -83,10 +83,8 @@
 
                 </div>
 
-                <div class="wrap-pagination-info">
                     {{$products->links('layouts.pagination')}}
 
-                </div>
             </div><!--end main products area-->
 
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">

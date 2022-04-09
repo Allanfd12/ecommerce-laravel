@@ -18,4 +18,5 @@ class Product extends Model
         }
         return 'R$ ' . number_format($this->regular_price, 2, ',', '.');
     }
+    //TODO: obter imagem do banco de dados
 }

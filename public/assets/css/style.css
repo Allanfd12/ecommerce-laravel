@@ -2397,6 +2397,7 @@ li.menu-item .nav-label.sale-label::before{
     padding: 0;
     margin: 0;
     margin-top: 17px;
+    cursor: pointer;
 }
 .wrap-pagination-info .page-numbers li{
     display: block;
@@ -2444,7 +2445,7 @@ li.menu-item .nav-label.sale-label::before{
     font-size: 13px;
     line-height: 35px;
     color: #333333;
-    float: right;
+    float: left;
     margin: 0;
     margin-top: -2px;
 }
