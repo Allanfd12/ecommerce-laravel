@@ -59,11 +59,20 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-        
+    /**
+     * Retorna se o usuario é um administrador
+     *
+     * @return bool
+     */
     public function isAdmin(){
         return $this->user_type === 'admin';
     }
 
+    /**
+     * Retorna se o usuario é um cliente
+     *
+     * @return bool
+     */
     public function isClient(){
         return $this->user_type === 'user';
     }

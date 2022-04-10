@@ -18,4 +18,12 @@ class ShopComponent extends Component
         $products = Product::paginate($this->productsPerPage);
         return view('livewire.shop-component',['products'=>$products])->layout('layouts.padrao');
     }
+
+    public function store($product_id, $quantity = 1)
+    {
+        $product = Product::find($product_id);
+        $product->addToCart($quantity);
+        session()->flash('success_message', 'Produto adicionado ao carrinho com sucesso!');
+        return redirect()->route('cart');
+    }
 }
