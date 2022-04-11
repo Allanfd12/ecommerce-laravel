@@ -20,17 +20,34 @@ class CartComponent extends Component
         $tax = Cart::tax();
         $total = Cart::total();
 
-        return view('livewire.cart-component',
-        [
-            'cart'=>$cart,
-            'subtotal'=>$subtotal,
-            'tax'=>$tax,
-            'total'=>$total
-        ]
+        return view(
+            'livewire.cart-component',
+            [
+                'cart' => $cart,
+                'subtotal' => $subtotal,
+                'tax' => $tax,
+                'total' => $total
+            ]
         )->layout('layouts.padrao');
+    }
+    public function remove($rowId)
+    {
+        Cart::remove($rowId);
+    }
+    public function increaseQuantity($rowId)
+    {
+        $product = Cart::get($rowId);
+        $qty = $product->qty + 1;
+        Cart::update($rowId, $qty);
+    }
+    public function decreaseQuantity($rowId)
+    {
+        $product = Cart::get($rowId);
+        $qty = $product->qty - 1;
+        Cart::update($rowId, $qty);
     }
     public function formatValue($value)
     {
-        return $this->defaultMonetaryUnit.' '. number_format($value, $this->numberDecimalCases, ',', '.');
+        return $this->defaultMonetaryUnit . ' ' . number_format($value, $this->numberDecimalCases, ',', '.');
     }
 }
