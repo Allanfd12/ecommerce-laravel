@@ -37,7 +37,7 @@
                         </div>
                         <div class="price-field sub-total"><p class="price">{{$this->formatValue($item->subtotal)}}</p></div>
                         <div class="delete">
-                            <a href="#" class="btn btn-delete" title="Delete from your cart" wire:click.prevent="remove({{$item->rowId}})">
+                            <a href="#" class="btn btn-delete" title="Delete from your cart" wire:click.prevent="remove('{{$item->rowId}}')">
                                 <span>Delete from your cart</span>
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
@@ -66,11 +66,10 @@
                         <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
                     </label>
                     <a class="btn btn-checkout" href="checkout.html">Check out</a>
-                    <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <a class="link-to-shop" href="{{route('home')}}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="update-clear">
-                    <a class="btn btn-clear" href="#">Clear Shopping Cart</a>
-                    <a class="btn btn-update" href="#">Update Shopping Cart</a>
+                    <a class="btn btn-clear" href="#" wire:click.prevent="clearCart()">Clear Shopping Cart</a>
                 </div>
             </div>
 

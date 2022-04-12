@@ -33,7 +33,14 @@ class CartComponent extends Component
     public function remove($rowId)
     {
         Cart::remove($rowId);
+        session()->flash('success_message', 'Produto removido do carrinho!');
     }
+
+    public function clearCart(){
+        Cart::destroy();
+        session()->flash('success_message', 'Carrinho limpo!');
+    }
+
     public function increaseQuantity($rowId)
     {
         $product = Cart::get($rowId);
@@ -48,6 +55,7 @@ class CartComponent extends Component
     }
     public function formatValue($value)
     {
-        return $this->defaultMonetaryUnit . ' ' . number_format($value, $this->numberDecimalCases, ',', '.');
+        
+        return $this->defaultMonetaryUnit . ' ' . number_format(floatval($value), $this->numberDecimalCases, ',', '.');
     }
 }
