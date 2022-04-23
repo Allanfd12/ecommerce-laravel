@@ -40,6 +40,17 @@ class Product extends Model
     }
 
     /**
+     * Retorna o valor monetario sem formatacao
+     * 
+     * @return float
+     */
+    public function getImage(){
+        //TODO: obter imagem do banco de dados
+
+        return $this->image;
+    }
+
+    /**
      * Adiciona um poduto ao carrinho
      * @param $quantity Quantidade a ser adicionada
      * @return void
@@ -48,5 +59,30 @@ class Product extends Model
     {
         Cart::add($this->id, $this->name, $quantity, $this->getPrice())->associate('App\Models\Product');
     }
-    //TODO: obter imagem do banco de dados
+
+    /**
+     * Obtem os produtos ordenados por data ou preco
+     * @param string $sort_method Tipo de ordenacao
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function getSortedProducts($sort_method)
+    {
+        switch($sort_method){
+            case 'date':
+                $products = Product::orderBy('created_at', 'desc');
+                break;
+            case 'price':
+                $products = Product::orderBy('sale_price', 'asc')->orderBy('regular_price', 'asc');
+                break;
+            case 'price-desc':
+                $products = Product::orderBy('sale_price', 'desc')->orderBy('regular_price', 'desc');
+                break;
+            case 'default':  
+            default:
+                $products = Product::orderBy('id', 'desc');
+                break;
+        }
+        return $products;
+    }
+
 }

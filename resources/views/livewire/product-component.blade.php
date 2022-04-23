@@ -16,8 +16,8 @@
                         <div class="product-gallery">
                           <ul class="slides">
 
-                            <li data-thumb="{{asset('assets/images/products/'.$product->image)}}">
-                                <img src="{{asset('assets/images/products/'.$product->image)}}" alt="{{$product->name}}" />
+                            <li data-thumb="{{asset('assets/images/products/'.$product->getImage())}}">
+                                <img src="{{asset('assets/images/products/'.$product->getImage())}}" alt="{{$product->name}}" />
                             </li>
 
                           </ul>
