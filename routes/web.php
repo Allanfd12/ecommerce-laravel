@@ -8,6 +8,7 @@ use \App\Http\Livewire\CartComponent as CartComponent;
 use \App\Http\Livewire\CheckoutComponent as CheckoutComponent;
 use \App\Http\Livewire\ProductComponent as ProductComponent;
 use \App\Http\Livewire\CategoryComponent as CategoryComponent;
+use \App\Http\Livewire\SearchComponent as SearchComponent;
 use \App\Http\Livewire\User\UserDashboardComponent as UserDashboardComponent;
 use \App\Http\Livewire\Admin\AdminDashboardComponent as AdminDashboardComponent;
 
@@ -28,6 +29,7 @@ Route::get('/cart',[CartComponent::class, '__invoke'])->name('cart');
 Route::get('/checkout',[CheckoutComponent::class, '__invoke'])->name('checkout');
 Route::get('/product/{slug}',[ProductComponent::class, '__invoke'])->name('product.detail');
 Route::get('/category/{slug}',[CategoryComponent::class, '__invoke'])->name('category.detail');
+Route::get('/search',[SearchComponent::class, '__invoke'])->name('search');
 
 // grupo de rotas de usuários autenticados
 /*Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {

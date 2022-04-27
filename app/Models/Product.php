@@ -84,5 +84,18 @@ class Product extends Model
         }
         return $products;
     }
-
+    /**
+     * Retorna uma lista de produstos pesquisados por categoria e termo de busca
+     * @param string $search termo de busca
+     * @param int $category_id id da categoria
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function getSearchProducts($search, $category_id)
+    {
+        $products = Product::where('name', 'like', '%'.$search.'%');
+        if($category_id != 0) {
+            $products = $products->where('category_id', $category_id);
+        }
+        return $products;
+    }
 }
