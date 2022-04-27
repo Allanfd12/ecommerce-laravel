@@ -69,8 +69,7 @@
 						_title 	 = _this.text();
                     _content = _content.slice(0, 12);
                     _this.parent().siblings('a').text(_content).attr('title',_title);
-                    _this.parent().siblings('input[name="product_category"]').val(_value);
-					_this.parent().siblings('input[name="product_category_id"]').val(_this.data('id'));
+					_this.parent().siblings('input[name="category_slug"]').val(_this.data('slug'));
                     _this.parent().slideUp();
                 });
 			}

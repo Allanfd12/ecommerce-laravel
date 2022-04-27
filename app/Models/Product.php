@@ -65,21 +65,24 @@ class Product extends Model
      * @param string $sort_method Tipo de ordenacao
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function getSortedProducts($sort_method)
+    public static function getSortedProducts($sort_method,$query = null)
     {
+        if($query == null){
+            $query = Product::query();
+        }
         switch($sort_method){
             case 'date':
-                $products = Product::orderBy('created_at', 'desc');
+                $products = $query->orderBy('created_at', 'desc');
                 break;
             case 'price':
-                $products = Product::orderBy('sale_price', 'asc')->orderBy('regular_price', 'asc');
+                $products = $query->orderBy('sale_price', 'asc')->orderBy('regular_price', 'asc');
                 break;
             case 'price-desc':
-                $products = Product::orderBy('sale_price', 'desc')->orderBy('regular_price', 'desc');
+                $products = $query->orderBy('sale_price', 'desc')->orderBy('regular_price', 'desc');
                 break;
             case 'default':  
             default:
-                $products = Product::orderBy('id', 'desc');
+                $products = $query->orderBy('id', 'desc');
                 break;
         }
         return $products;
@@ -87,14 +90,19 @@ class Product extends Model
     /**
      * Retorna uma lista de produstos pesquisados por categoria e termo de busca
      * @param string $search termo de busca
-     * @param int $category_id id da categoria
+     * @param int $category_slug id da categoria
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function getSearchProducts($search, $category_id)
+    public static function SearchProducts($search, $category_id,$query = null)
     {
-        $products = Product::where('name', 'like', '%'.$search.'%');
-        if($category_id != 0) {
+        if($query == null){
+            $query = Product::query();
+        }
+        $products = $query->where('name', 'like', '%'.$search.'%');
+        if($category_id != null) {
+    
             $products = $products->where('category_id', $category_id);
+            
         }
         return $products;
     }

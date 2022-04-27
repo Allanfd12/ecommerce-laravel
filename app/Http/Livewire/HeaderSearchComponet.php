@@ -9,12 +9,16 @@ class HeaderSearchComponet extends Component
 {
     public $search;
     public $category = 'All Category';
-    public $category_id = 0;
+    public $category_slug = null;
 
     public function mount()
     {
-        $this->fill(request()->only('search','category','category_id'));
+        $this->fill(request()->only('search','category_slug'));
 
+        $category = Category::where('slug', $this->category_slug)->first();
+        if($category != null){
+            $this->category = $category->name;
+        }
     }
 
     public function render()
