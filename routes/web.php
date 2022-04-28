@@ -11,6 +11,8 @@ use \App\Http\Livewire\CategoryComponent as CategoryComponent;
 use \App\Http\Livewire\SearchComponent as SearchComponent;
 use \App\Http\Livewire\User\UserDashboardComponent as UserDashboardComponent;
 use \App\Http\Livewire\Admin\AdminDashboardComponent as AdminDashboardComponent;
+use \App\Http\Livewire\Admin\AdminCategoryComponent as AdminCategoryComponent;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +48,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 //autenticação para admins
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardComponent::class, '__invoke'])->name('admin.dashboard');
+    Route::get('/admin/categories', [AdminCategoryComponent::class, '__invoke'])->name('admin.categories');
 });

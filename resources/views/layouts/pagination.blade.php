@@ -14,8 +14,7 @@
             @if (!$paginator->onFirstPage())
             <li><a class="page-number-item next-link" href="#" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}" class="page-link" wire:click="previousPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" >Previous</a></li>
             @else
-            <li><a class="page-number-item next-link" href="#" >Previous</a></li>
-
+            <li><a class="page-number-item next-link" href="#" wire:loading.attr="disabled" >Previous</a></li>
             @endif
 
             {{-- Pagination Elements --}}

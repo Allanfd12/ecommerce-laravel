@@ -62,6 +62,10 @@
 												<li class="menu-item" >
 													<a title="Dashboard" href="{{route('admin.dashboard')}}">Dashboard</a>
 												</li>
+												<li class="menu-item" >
+													<a title="Categorias" href="{{route('admin.categories')}}">Categorias</a>
+												</li>
+												
 												<form id="myFormLogout" method="POST" action="{{route('logout')}}">
 													@csrf
 												<li class="menu-item" >
