@@ -12,6 +12,7 @@ use \App\Http\Livewire\SearchComponent as SearchComponent;
 use \App\Http\Livewire\User\UserDashboardComponent as UserDashboardComponent;
 use \App\Http\Livewire\Admin\AdminDashboardComponent as AdminDashboardComponent;
 use \App\Http\Livewire\Admin\AdminCategoryComponent as AdminCategoryComponent;
+use \App\Http\Livewire\Admin\AdminAddCategoryComponent as AdminAddCategoryComponent;
 
 
 /*
@@ -33,20 +34,19 @@ Route::get('/product/{slug}',[ProductComponent::class, '__invoke'])->name('produ
 Route::get('/category/{slug}',[CategoryComponent::class, '__invoke'])->name('category.detail');
 Route::get('/search',[SearchComponent::class, '__invoke'])->name('search');
 
-// grupo de rotas de usuários autenticados
-/*Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-*/
+
+
+
 //autenticação normal
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/user/dashboard', [UserDashboardComponent::class, '__invoke'])->name('user.dashboard');
 
 });
+
+
 //autenticação para admins
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardComponent::class, '__invoke'])->name('admin.dashboard');
-    Route::get('/admin/categories', [AdminCategoryComponent::class, '__invoke'])->name('admin.categories');
+    Route::get('/admin/category', [AdminCategoryComponent::class, '__invoke'])->name('admin.categories');
+    Route::get('/admin/category/add', [AdminAddCategoryComponent::class, '__invoke'])->name('admin.category.add');
 });

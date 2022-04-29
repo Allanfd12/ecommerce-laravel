@@ -14,7 +14,15 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        All Categories
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <h2 style="font-size:12pt; margin-top:10px">Todas as Categorias</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ route('admin.category.add') }}"
+                                    class="btn btn-success pull-right">Adicionar Nova Categoria</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">
