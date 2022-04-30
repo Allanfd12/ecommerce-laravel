@@ -64,7 +64,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isAdmin(){
+    public function isAdmin():bool{
         return $this->user_type === 'admin';
     }
 
@@ -73,7 +73,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isClient(){
+    public function isClient():bool{
         return $this->user_type === 'user';
     }
 }

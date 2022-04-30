@@ -8,9 +8,18 @@ use Cart;
 class CartComponent extends Component
 {
 
-    // guarda o numero de casas decimais
+    
+    /**
+     * numberDecimalCases - Define o numero de casas decimais
+     *
+     * @var int
+     */
     private $numberDecimalCases = 2;
-    // guarda o simbolo padrao para o valor monetario
+    /**
+     * defaultMonetaryUnit - Define o simbolo padrao para o valor monetario
+     *
+     * @var string
+     */
     private $defaultMonetaryUnit = 'R$';
 
     public function render()

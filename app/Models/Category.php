@@ -8,10 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
+    
+    /**
+     * table - Define a tabela do banco de dados
+     *
+     * @var string
+     */
     protected $table = 'categories';
 
-    public static function tryAddCategory($name, $slug)
+            
+    /**
+     * tryAddCategory - Tenta adicionar uma categoria, retorna falso caso o slug já exista
+     *
+     * @param  mixed $name
+     * @param  mixed $slug
+     * @return bool true se adicionou, false se não
+     */
+    public static  function tryAddCategory($name, $slug) : bool
     {
         if(!self::categoryExists($slug)){
             $category = new Category();
@@ -22,8 +35,14 @@ class Category extends Model
         }
         return false;
     }
-    
-    public static function categoryExists($slug)
+        
+    /**
+     * categoryExists - Verifica se uma categoria existe
+     *
+     * @param  mixed $slug
+     * @return bool
+     */
+    public static function categoryExists($slug) : bool
     {
         return Category::where('slug', $slug)->exists();
     }

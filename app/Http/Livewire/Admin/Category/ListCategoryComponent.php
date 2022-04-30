@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 use \App\Models\Category;
 
-class AdminCategoryComponent extends Component
+class ListCategoryComponent extends Component
 {
 
     // indica a quantidade maxima de itens por pagina
-    public $itensPerPage = 4;
+    public $itensPerPage = 10;
 
     use WithPagination;
     public function render()
     {
 
         $categories = Category::paginate($this->itensPerPage);
-        return view('livewire.admin.admin-category-component',
+        return view('livewire.admin.category.list-category-component',
         [
             'categories'=>$categories
         ]

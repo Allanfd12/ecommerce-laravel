@@ -11,9 +11,18 @@ class Product extends Model
 
     protected $table = 'products';
     
-    // guarda o numero de casas decimais
+    /**
+     * numberDecimalCases - Define o numero de casas decimais
+     *
+     * @var int
+     */
     private $numberDecimalCases = 2;
-    // guarda o simbolo padrao para o valor monetario
+    
+    /**
+     * defaultMonetaryUnit - Define o simbolo padrao para o valor monetario
+     *
+     * @var string
+     */
     private $defaultMonetaryUnit = 'R$';
 
     /**
@@ -21,8 +30,7 @@ class Product extends Model
      *
      * @return string
      */
-    public function getFormattedPrice()
-    {
+    public function getFormattedPrice() : String {
         return $this->defaultMonetaryUnit.' '. number_format($this->getPrice(), $this->numberDecimalCases, ',', '.');
     }
 
@@ -31,7 +39,7 @@ class Product extends Model
      * 
      * @return float
      */
-    public function getPrice(){
+    public function getPrice() : float {
         $price = $this->regular_price;
         if($this->sale_price != null) {
             $price = $this->sale_price;
@@ -40,9 +48,7 @@ class Product extends Model
     }
 
     /**
-     * Retorna o valor monetario sem formatacao
-     * 
-     * @return float
+     * getImage - Retorna o valor monetario sem formatacao
      */
     public function getImage(){
         //TODO: obter imagem do banco de dados
@@ -51,21 +57,21 @@ class Product extends Model
     }
 
     /**
-     * Adiciona um poduto ao carrinho
+     * addToCart - Adiciona um poduto ao carrinho
      * @param $quantity Quantidade a ser adicionada
-     * @return void
      */
-    public function addToCart($quantity = 1)
+    public function addToCart($quantity = 1) : void
     {
         Cart::add($this->id, $this->name, $quantity, $this->getPrice())->associate('App\Models\Product');
     }
 
     /**
-     * Obtem os produtos ordenados por data ou preco
+     * getSortedProducts - Obtem os produtos ordenados por data ou preco
      * @param string $sort_method Tipo de ordenacao
+     * @param \Illuminate\Database\Eloquent\Builder $query Query de produto a ser ordenada
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function getSortedProducts($sort_method,$query = null)
+    public static function getSortedProducts($sort_method,$query = null) : \Illuminate\Database\Eloquent\Builder
     {
         if($query == null){
             $query = Product::query();
@@ -88,12 +94,13 @@ class Product extends Model
         return $products;
     }
     /**
-     * Retorna uma lista de produstos pesquisados por categoria e termo de busca
+     * SearchProducts Retorna uma lista de produstos pesquisados por categoria e termo de busca
      * @param string $search termo de busca
      * @param int $category_slug id da categoria
+     * @param \Illuminate\Database\Eloquent\Builder $query Query de produto a ser pesquisada
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function SearchProducts($search, $category_id,$query = null)
+    public static function SearchProducts($search, $category_id,$query = null) : \Illuminate\Database\Eloquent\Builder
     {
         if($query == null){
             $query = Product::query();
