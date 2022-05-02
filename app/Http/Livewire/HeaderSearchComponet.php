@@ -6,9 +6,24 @@ use Livewire\Component;
 use \App\Models\Category;
 
 class HeaderSearchComponet extends Component
-{
-    public $search;
-    public $category = 'All Category';
+{    
+    /**
+     * search - guarda o valor da busca
+     *
+     * @var string
+     */
+    public $search;    
+    /**
+     * category - guarda o titulo da categoria selecionada
+     *
+     * @var string
+     */
+    public $category = 'All Category';    
+    /**
+     * category_slug - guarda o slug da categoria selecionada
+     *
+     * @var string
+     */
     public $category_slug = null;
 
     public function mount()

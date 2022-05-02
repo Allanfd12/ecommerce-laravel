@@ -7,18 +7,36 @@ use \App\Models\Product;
 
 class ProductComponent extends Component
 {
-    // indica a quantidade maxima de produtos populars
+
+    /**
+     * totalPopularProductsPerPage - indica a quantidade maxima de produtos populares por pagina
+     *
+     * @var int
+     */
     private $totalPopularProductsPerPage =4;
-    // indica a quantidade maxima de produtos relacionados
+
+    /**
+     * totalRelatedProducts - indica a quantidade maxima de produtos relacionados por pagina
+     *
+     * @var int
+     */
     private $totalRelatedProducts =4;
 
-    // armazena o produto selecionado
+
     /**
+     * product - guarda o produto selecionado
+     * 
      * @var \App\Models\Product
      */
     public $product;
-
+    
+    /**
+     * slug - guarda o slug do produto
+     *
+     * @var mixed
+     */
     public $slug;
+    
     public function mount($slug)
     {
         $this->slug = $slug;
@@ -36,7 +54,13 @@ class ProductComponent extends Component
             'related_products'=>$related_products
         ])->layout('layouts.padrao');
 
-    }
+    }    
+    /**
+     * store - Adiciona o produto selecionado ao carrinho
+     *
+     * @param  mixed $quantity
+     * @return void
+     */
     public function store( $quantity = 1)
     {
         $this->product->addToCart($quantity);

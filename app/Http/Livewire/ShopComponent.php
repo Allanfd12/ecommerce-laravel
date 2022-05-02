@@ -9,10 +9,18 @@ use \App\Models\Category;
 
 class ShopComponent extends Component
 {
-    // indica a quantidade maxima de produtos por pagina
+    /**
+     * productsPerPage - indica a quantidade maxima de produtos por pagina
+     *
+     * @var int
+     */
     public $productsPerPage = 10;
 
-    // guarda o tipo de ordenacao dos produtos
+    /**
+     * sort_method - guarda o tipo de ordenacao dos produtos
+     *
+     * @var undefined
+     */
     public $sort_method =  'default';
 
     use WithPagination;
@@ -27,7 +35,14 @@ class ShopComponent extends Component
             'categories'=>$categories
         ])->layout('layouts.padrao');
     }
-
+    
+    /**
+     * store - adiciona um produto ao carrinho
+     *
+     * @param  int $product_id - id do produto
+     * @param  int $quantity - quantidade do produto
+     * @return void
+     */
     public function store($product_id, $quantity = 1)
     {
         $product = Product::find($product_id);

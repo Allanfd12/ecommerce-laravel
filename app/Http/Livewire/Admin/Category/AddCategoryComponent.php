@@ -7,8 +7,18 @@ use Livewire\Component;
 use illuminate\Support\Str;
 
 class AddCategoryComponent extends Component
-{
-    public $name;
+{    
+    /**
+     * name - nome da categoria
+     *
+     * @var mixed
+     */
+    public $name;    
+    /**
+     * slug - slug da categoria
+     *
+     * @var mixed
+     */
     public $slug;
     
     public function render()
@@ -25,7 +35,12 @@ class AddCategoryComponent extends Component
         }
         
     }
-
+    
+    /**
+     * generateSlug - gera o slug da categoria
+     *
+     * @return void
+     */
     public function generateSlug()
     {
         $this->slug = Str::slug($this->name);

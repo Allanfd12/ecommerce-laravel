@@ -9,14 +9,32 @@ use \App\Models\Category;
 
 class CategoryComponent extends Component
 {
-    // indica a quantidade maxima de produtos por pagina
+    /**
+     * productsPerPage - indica a quantidade maxima de produtos por pagina
+     *
+     * @var int
+     */
     public $productsPerPage = 10;
 
-    // guarda o tipo de ordenacao dos produtos
+    /**
+     * sort_method - guarda o tipo de ordenacao dos produtos
+     *
+     * @var string
+     */
     public $sort_method =  'default';
-
+    
+    /**
+     * category - guarda a categoria selecionada
+     *
+     * @var \App\Models\Category
+     */
     public $category;
-
+    
+    /**
+     * slug - guarda o slug da categoria
+     *
+     * @var string
+     */
     public $slug;
     
     public function mount($slug)
@@ -41,12 +59,18 @@ class CategoryComponent extends Component
             'categoryName'=>$categoryName
         ])->layout('layouts.padrao');
     }
-
+    
+    /**
+     * store - adiciona um produto ao carrinho
+     *
+     * @param  int $product_id - id do produto
+     * @param  int $quantity - quantidade do produto
+     * @return void
+     */
     public function store($product_id, $quantity = 1)
     {
         $product = Product::find($product_id);
         $product->addToCart($quantity);
-
         session()->flash('success_message', 'Produto adicionado ao carrinho com sucesso!');
         return redirect()->route('cart');
     }

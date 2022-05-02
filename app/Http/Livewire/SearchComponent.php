@@ -9,15 +9,46 @@ use \App\Models\Category;
 
 class SearchComponent extends Component
 {
-    // indica a quantidade maxima de produtos por pagina
+    /**
+     * productsPerPage - indica a quantidade maxima de produtos por pagina
+     *
+     * @var int
+     */
     public $productsPerPage = 10;
 
-    // guarda o tipo de ordenacao dos produtos
+    /**
+     * sort_method - guarda o tipo de ordenacao dos produtos
+     *
+     * @var undefined
+     */
     public $sort_method =  'default';
+    
+    /**
+     * search - guarda o valor da busca
+     *
+     * @var mixed
+     */
+    public $search;    
 
-    public $search;
-    public $category_slug;
-    public $category_id = null;
+    /**
+     * category_slug - guarda o slug da categoria selecionada
+     *
+     * @var mixed
+     */
+    public $category_slug;   
+
+    /**
+     * category_id - guarda o id da categoria selecionada
+     *
+     * @var undefined
+     */
+    public $category_id = null;  
+
+    /**
+     * category - guarda o titulo da categoria selecionada
+     *
+     * @var string
+     */
     public $category = 'All Category';
 
 
@@ -34,8 +65,6 @@ class SearchComponent extends Component
     use WithPagination;
     public function render()
     {
-
-
         $products = Product::SearchProducts($this->search, $this->category_id);
         $products = Product::getSortedProducts($this->sort_method,$products)
                         ->paginate($this->productsPerPage);
@@ -46,7 +75,14 @@ class SearchComponent extends Component
             'categories'=>$categories
         ])->layout('layouts.padrao');
     }
-
+    
+    /**
+     * store - adiciona um novo produto ao carrinho
+     *
+     * @param  int $product_id - id do produto
+     * @param  int $quantity - quantidade do produto
+     * @return void
+     */
     public function store($product_id, $quantity = 1)
     {
         $product = Product::find($product_id);

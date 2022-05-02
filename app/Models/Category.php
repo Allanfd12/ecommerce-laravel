@@ -20,8 +20,8 @@ class Category extends Model
     /**
      * tryAddCategory - Tenta adicionar uma categoria, retorna falso caso o slug já exista
      *
-     * @param  mixed $name
-     * @param  mixed $slug
+     * @param  string $name
+     * @param  string $slug
      * @return bool true se adicionou, false se não
      */
     public static  function tryAddCategory($name, $slug) : bool
@@ -39,7 +39,7 @@ class Category extends Model
     /**
      * categoryExists - Verifica se uma categoria existe
      *
-     * @param  mixed $slug
+     * @param  string $slug
      * @return bool
      */
     public static function categoryExists($slug) : bool

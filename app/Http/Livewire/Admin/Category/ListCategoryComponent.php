@@ -9,7 +9,11 @@ use \App\Models\Category;
 class ListCategoryComponent extends Component
 {
 
-    // indica a quantidade maxima de itens por pagina
+    /**
+     * itensPerPage - indica a quantidade maxima de itens por pagina 
+     *
+     * @var int
+     */
     public $itensPerPage = 10;
 
     use WithPagination;
