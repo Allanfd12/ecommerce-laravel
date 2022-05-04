@@ -50,4 +50,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/dashboard', [AdminDashboardComponent::class, '__invoke'])->name('admin.dashboard');
     Route::get('/admin/category', [ListCategoryComponent::class, '__invoke'])->name('admin.categories');
     Route::get('/admin/category/add', [AddCategoryComponent::class, '__invoke'])->name('admin.category.add');
+    Route::get('/admin/category/edit/{slug}', [EditCategoryComponent::class, '__invoke'])->name('admin.category.edit');
 });

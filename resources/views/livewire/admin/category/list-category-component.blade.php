@@ -41,8 +41,9 @@
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->slug }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{route('admin.category.edit',['slug'=>$category->slug])}}" ><i class="fa fa-edit fa-2x"></i></a>
+                                            
+                                            <a href="" ><i class="fa fa-trash fa-2x"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

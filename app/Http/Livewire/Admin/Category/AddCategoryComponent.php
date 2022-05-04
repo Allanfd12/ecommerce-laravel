@@ -11,13 +11,13 @@ class AddCategoryComponent extends Component
     /**
      * name - nome da categoria
      *
-     * @var mixed
+     * @var string
      */
     public $name;    
     /**
      * slug - slug da categoria
      *
-     * @var mixed
+     * @var string
      */
     public $slug;
     
