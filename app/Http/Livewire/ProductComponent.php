@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use \App\Models\Product;
+use App\Service\Cart\CartService;
+use App\Service\Formater\FormaterService;
 
 class ProductComponent extends Component
 {
@@ -21,7 +23,13 @@ class ProductComponent extends Component
      * @var int
      */
     private $totalRelatedProducts =4;
-
+    
+    /**
+     * formater - Classe de formatação
+     *
+     * @var undefined
+     */
+    public $formater = FormaterService::class;
 
     /**
      * product - guarda o produto selecionado
@@ -63,7 +71,8 @@ class ProductComponent extends Component
      */
     public function store( $quantity = 1)
     {
-        $this->product->addToCart($quantity);
+        CartService::add($this->product,$quantity);
+
         session()->flash('success_message', 'Produto adicionado ao carrinho!');
         return redirect()->route('cart');
     }

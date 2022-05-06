@@ -57,15 +57,6 @@ class Product extends Model
     }
 
     /**
-     * addToCart - Adiciona um poduto ao carrinho
-     * @param $quantity Quantidade a ser adicionada
-     */
-    public function addToCart($quantity = 1) : void
-    {
-        Cart::add($this->id, $this->name, $quantity, $this->getPrice())->associate('App\Models\Product');
-    }
-
-    /**
      * getSortedProducts - Obtem os produtos ordenados por data ou preco
      * @param string $sort_method Tipo de ordenacao
      * @param \Illuminate\Database\Eloquent\Builder $query Query de produto a ser ordenada

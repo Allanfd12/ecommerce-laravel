@@ -24,16 +24,18 @@ class Category extends Model
      * @param  string $slug
      * @return bool true se adicionou, false se não
      */
-    public static  function tryAddCategory($name, $slug) : bool
+    public static function tryAddCategory($name, $slug) : bool
     {
-        if(!self::categoryExists($slug)){
+        if(self::categoryExists($slug)){
+            return false;
+        }
+
             $category = new Category();
             $category->name = $name;
             $category->slug = $slug;
             $category->save();
-            return true;
-        }
-        return false;
+        
+        return true;
     }
         
     /**

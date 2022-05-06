@@ -35,7 +35,7 @@
                                 <a class="btn btn-reduce" href="#" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')"></a>
                             </div>
                         </div>
-                        <div class="price-field sub-total"><p class="price">{{$this->formatValue($item->subtotal)}}</p></div>
+                        <div class="price-field sub-total"><p class="price">{{$this->formater::monetaryValue($item->subtotal)}}</p></div>
                         <div class="delete">
                             <a href="#" class="btn btn-delete" title="Delete from your cart" wire:click.prevent="remove('{{$item->rowId}}')">
                                 <span>Delete from your cart</span>
@@ -56,10 +56,10 @@
             <div class="summary">
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
-                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{$this->formatValue($subtotal)}}</b></p>
-                    <p class="summary-info"><span class="title">Tax</span><b class="index">{{$this->formatValue($tax)}}</b></p>
+                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{$this->formater::monetaryValue($subtotal)}}</b></p>
+                    <p class="summary-info"><span class="title">Tax</span><b class="index">{{$this->formater::monetaryValue($tax)}}</b></p>
                     <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{$this->formatValue($total)}}</b></p>
+                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{$this->formater::monetaryValue($total)}}</b></p>
                 </div>
                 <div class="checkout-info">
                     <label class="checkbox-field">

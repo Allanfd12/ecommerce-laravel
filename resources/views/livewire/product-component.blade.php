@@ -39,7 +39,7 @@
                         <div class="wrap-social">
                             <a class="link-socail" href="#"><img src="{{asset('assets/images/social-list.png')}}" alt=""></a>
                         </div>
-                        <div class="wrap-price"><span class="product-price">{{$product->getFormattedPrice()}}</span></div>
+                        <div class="wrap-price"><span class="product-price">{{$this->formater::monetaryValue($product->getPrice())}}</span></div>
                         <div class="stock-info in-stock">
                             <p class="availability">Availability: <b>{{$product->stock_status}}</b></p>
                         </div>
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="product-info">
                                         <a href="{{route('product.detail',['slug'=>$popular_product->slug])}}" class="product-name"><span>{{$popular_product->name}}</span></a>
-                                        <div class="wrap-price"><span class="product-price">{{$popular_product->getFormattedPrice()}}</span></div>
+                                        <div class="wrap-price"><span class="product-price">{{$this->formater::monetaryValue($popular_product->getPrice())}}</span></div>
                                     </div>
                                 </div>
                             </li>
@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="product-info">
                                     <a href="{{route('product.detail',['slug'=>$related_product->slug])}}" class="product-name"><span>{{$related_product->name}}</span></a>
-                                    <div class="wrap-price"><span class="product-price">{{$related_product->getFormattedPrice()}}</span></div>
+                                    <div class="wrap-price"><span class="product-price">{{$this->formater::monetaryValue($related_product->getPrice())}}</span></div>
                                 </div>
                             </div>
                             @endforeach

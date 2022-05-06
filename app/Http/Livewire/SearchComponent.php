@@ -6,7 +6,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use \App\Models\Product;
 use \App\Models\Category;
-
+use App\Service\Cart\CartService;
+use App\Service\Formater\FormaterService;
 class SearchComponent extends Component
 {
     /**
@@ -51,6 +52,12 @@ class SearchComponent extends Component
      */
     public $category = 'All Category';
 
+      /**
+     * formater - Classe de formatação
+     *
+     * @var undefined
+     */
+    public $formater = FormaterService::class;  
 
     public function mount(){
         $this->fill(request()->only('search','category_slug'));
@@ -85,8 +92,8 @@ class SearchComponent extends Component
      */
     public function store($product_id, $quantity = 1)
     {
-        $product = Product::find($product_id);
-        $product->addToCart($quantity);
+        CartService::add(Product::find($product_id),$quantity);
+        
         session()->flash('success_message', 'Produto adicionado ao carrinho com sucesso!');
         return redirect()->route('cart');
     }

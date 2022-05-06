@@ -3,31 +3,25 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Cart;
+use App\Service\Cart\CartService;
+use App\Service\Formater\FormaterService;
 
 class CartComponent extends Component
 {
+    /**
+     * formater - Classe de formatação
+     *
+     * @var undefined
+     */
+    public $formater = FormaterService::class;
 
-    
-    /**
-     * numberDecimalCases - Define o numero de casas decimais
-     *
-     * @var int
-     */
-    private $numberDecimalCases = 2;
-    /**
-     * defaultMonetaryUnit - Define o simbolo padrao para o valor monetario
-     *
-     * @var string
-     */
-    private $defaultMonetaryUnit = 'R$';
 
     public function render()
     {
-        $cart = Cart::content();
-        $subtotal = Cart::subtotal();
-        $tax = Cart::tax();
-        $total = Cart::total();
+        $cart = CartService::content();
+        $subtotal = CartService::subtotal();
+        $tax = CartService::tax();
+        $total = CartService::total();
 
         return view(
             'livewire.cart-component',
@@ -47,7 +41,7 @@ class CartComponent extends Component
      */
     public function remove($rowId)
     {
-        Cart::remove($rowId);
+        CartService::remove($rowId);
         session()->flash('success_message', 'Produto removido do carrinho!');
     }
     
@@ -57,7 +51,7 @@ class CartComponent extends Component
      * @return void
      */
     public function clearCart(){
-        Cart::destroy();
+        CartService::destroy();
         session()->flash('success_message', 'Carrinho limpo!');
     }
     
@@ -69,9 +63,7 @@ class CartComponent extends Component
      */
     public function increaseQuantity($rowId)
     {
-        $product = Cart::get($rowId);
-        $qty = $product->qty + 1;
-        Cart::update($rowId, $qty);
+        CartService::changeQuantity($rowId,1);
     }    
     /**
      * decreaseQuantity - Diminui a quantidade, em 1, de um item do carrinho
@@ -81,19 +73,7 @@ class CartComponent extends Component
      */
     public function decreaseQuantity($rowId)
     {
-        $product = Cart::get($rowId);
-        $qty = $product->qty - 1;
-        Cart::update($rowId, $qty);
+        CartService::changeQuantity($rowId,-1);
     }    
-    /**
-     * formatValue - Formata o valor monetario formatado
-     *
-     * @param  mixed $value - valor monetario
-     * @return void
-     */
-    public function formatValue($value)
-    {
-        
-        return $this->defaultMonetaryUnit . ' ' . number_format(floatval($value), $this->numberDecimalCases, ',', '.');
-    }
+
 }
