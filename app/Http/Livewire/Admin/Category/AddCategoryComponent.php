@@ -5,6 +5,9 @@ namespace App\Http\Livewire\Admin\Category;
 use App\Models\Category;
 use Livewire\Component;
 use illuminate\Support\Str;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesError;
+use App\Service\Notifier\DefaultMessagesSuccess;
 
 class AddCategoryComponent extends Component
 {    
@@ -29,9 +32,9 @@ class AddCategoryComponent extends Component
 
     public function store(){
         if(Category::tryAddCategory($this->name, $this->slug)){
-            session()->flash('success_message', 'Categoria adicionada com sucesso!');
+            ViewNotifierService::success(DefaultMessagesSuccess::CategoryAdd);
         }else{
-            session()->flash('error_message', 'Slug já existe, tente outro nome!');
+            ViewNotifierService::error(DefaultMessagesError::SlugNotUnique);
         }
         
     }

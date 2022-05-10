@@ -6,6 +6,8 @@ use Livewire\Component;
 use \App\Models\Product;
 use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesSuccess;
 
 class ProductComponent extends Component
 {
@@ -73,7 +75,7 @@ class ProductComponent extends Component
     {
         CartService::add($this->product,$quantity);
 
-        session()->flash('success_message', 'Produto adicionado ao carrinho!');
+        ViewNotifierService::success(DefaultMessagesSuccess::CartProductAdd);
         return redirect()->route('cart');
     }
 }

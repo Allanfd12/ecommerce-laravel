@@ -5,6 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesSuccess;
+
 
 class CartComponent extends Component
 {
@@ -42,7 +45,7 @@ class CartComponent extends Component
     public function remove($rowId)
     {
         CartService::remove($rowId);
-        session()->flash('success_message', 'Produto removido do carrinho!');
+        ViewNotifierService::success(DefaultMessagesSuccess::CartProductRemoved);
     }
     
     /**
@@ -52,7 +55,7 @@ class CartComponent extends Component
      */
     public function clearCart(){
         CartService::destroy();
-        session()->flash('success_message', 'Carrinho limpo!');
+        ViewNotifierService::success(DefaultMessagesSuccess::CartClear);
     }
     
     /**

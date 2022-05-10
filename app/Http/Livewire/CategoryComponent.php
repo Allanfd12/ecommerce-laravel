@@ -8,6 +8,8 @@ use \App\Models\Product;
 use \App\Models\Category;
 use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesSuccess;
 
 class CategoryComponent extends Component
 {
@@ -80,7 +82,8 @@ class CategoryComponent extends Component
     {
         CartService::add(Product::find($product_id),$quantity);
 
-        session()->flash('success_message', 'Produto adicionado ao carrinho com sucesso!');
+        ViewNotifierService::success(DefaultMessagesSuccess::CartProductAdd);
+
         return redirect()->route('cart');
     }
 }

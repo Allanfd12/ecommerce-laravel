@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Category;
 use App\Models\Category;
 use Livewire\Component;
 use illuminate\Support\Str;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesSuccess;
 
 class EditCategoryComponent extends Component
 {
@@ -51,7 +53,7 @@ class EditCategoryComponent extends Component
         $category->name = $this->name;
         $category->slug = $this->new_slug;
         $category->save();
-        session()->flash('success_message', 'Categoria Editada com sucesso!');
+        ViewNotifierService::success(DefaultMessagesSuccess::CategoryEdited);
     }
 
     /**
