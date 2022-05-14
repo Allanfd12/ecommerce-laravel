@@ -10,6 +10,7 @@ use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
 use App\Service\Notifier\ViewNotifierService;
 use App\Service\Notifier\DefaultMessagesSuccess;
+use \App\Repository\interfaces\IProductRepository;
 
 class ShopComponent extends Component
 {
@@ -23,7 +24,7 @@ class ShopComponent extends Component
     /**
      * sort_method - guarda o tipo de ordenacao dos produtos
      *
-     * @var undefined
+     * @var string
      */
     public $sort_method =  'default';
 
@@ -33,11 +34,17 @@ class ShopComponent extends Component
      * @var undefined
      */
     public $formater = FormaterService::class;
+
+    private IProductRepository $productRepository;
+
+    public function mount(IProductRepository $productRepository){
+        $this->productRepository = $productRepository;
+    }
     use WithPagination;
     public function render()
     {
         
-        $products = Product::getSortedProducts($this->sort_method)->paginate($this->productsPerPage);
+        $products = $this->productRepository->getSortedProducts($this->sort_method)->paginate($this->productsPerPage);
 
         $categories = Category::all();
         return view('livewire.shop-component',[

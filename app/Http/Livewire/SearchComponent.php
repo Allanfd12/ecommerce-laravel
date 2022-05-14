@@ -10,6 +10,7 @@ use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
 use App\Service\Notifier\ViewNotifierService;
 use App\Service\Notifier\DefaultMessagesSuccess;
+use \App\Repository\interfaces\IProductRepository;
 
 class SearchComponent extends Component
 {
@@ -23,7 +24,7 @@ class SearchComponent extends Component
     /**
      * sort_method - guarda o tipo de ordenacao dos produtos
      *
-     * @var undefined
+     * @var string
      */
     public $sort_method =  'default';
     
@@ -44,7 +45,7 @@ class SearchComponent extends Component
     /**
      * category_id - guarda o id da categoria selecionada
      *
-     * @var undefined
+     * @var int
      */
     public $category_id = null;  
 
@@ -61,8 +62,11 @@ class SearchComponent extends Component
      * @var undefined
      */
     public $formater = FormaterService::class;  
+    
+    private IProductRepository $productRepository;
 
-    public function mount(){
+    public function mount(IProductRepository $productRepository){
+        $this->productRepository = $productRepository;
         $this->fill(request()->only('search','category_slug'));
 
         $category = Category::where('slug', $this->category_slug)->first();
@@ -75,8 +79,8 @@ class SearchComponent extends Component
     use WithPagination;
     public function render()
     {
-        $products = Product::SearchProducts($this->search, $this->category_id);
-        $products = Product::getSortedProducts($this->sort_method,$products)
+        $search = $this->productRepository->SearchProducts($this->search, $this->category_id);
+        $products = $this->productRepository->getSortedProducts($this->sort_method,$search)
                         ->paginate($this->productsPerPage);
 
         $categories = Category::all();
