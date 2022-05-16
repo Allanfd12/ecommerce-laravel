@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Service;
 
 use Livewire\Component;
 use \App\Models\Category;
@@ -40,7 +40,7 @@ class HeaderSearchComponet extends Component
     {
         $categories = Category::all();
 
-        return view('livewire.header-search-componet',[
+        return view('livewire.service.header-search-componet',[
             'categories'=>$categories
         ]);
     }

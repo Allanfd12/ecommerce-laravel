@@ -15,16 +15,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        @if (Session::has('success_message'))
-                            <div class="alert alert-success" role="alert">
-                                {{ Session::get('success_message') }}
-                            </div>
-                        @endif
-                        @if (Session::has('error_message'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ Session::get('error_message') }}
-                            </div>
-                        @endif
+                        @livewire('service.notification-component')
+                        
                         <form class="form-horizontal" wire:submit.prevent="update">
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Nome da Categoria</label>

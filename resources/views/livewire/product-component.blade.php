@@ -11,6 +11,8 @@
         <div class="row">
 
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
+                
+            @livewire('service.notification-component')
                 <div class="wrap-product-detail">
                     <div class="detail-media">
                         <div class="product-gallery">

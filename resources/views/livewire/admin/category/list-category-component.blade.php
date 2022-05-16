@@ -25,6 +25,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        @livewire('service.notification-component')
                         <table class="table table-striped">
                             <thead>
                                 <tr>

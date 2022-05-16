@@ -9,6 +9,8 @@
             </ul>
         </div>
         <div class=" main-content-area">
+            
+            @livewire('service.notification-component')
             <div class="wrap-address-billing">
                 <h3 class="box-title">Billing Address</h3>
                 <form action="#" method="get" name="frm-billing">

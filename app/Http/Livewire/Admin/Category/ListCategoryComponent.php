@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Category;
 use Livewire\Component;
 use Livewire\WithPagination;
 use \App\Models\Category;
+use App\Service\Notifier\ViewNotifierService;
+use App\Service\Notifier\DefaultMessagesSuccess;
 
 class ListCategoryComponent extends Component
 {
@@ -27,4 +29,12 @@ class ListCategoryComponent extends Component
         ]
         )->layout('layouts.padrao');
     }
+
+    public function delete($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+        ViewNotifierService::success(DefaultMessagesSuccess::CategoryDeleted);
+    }
+
 }

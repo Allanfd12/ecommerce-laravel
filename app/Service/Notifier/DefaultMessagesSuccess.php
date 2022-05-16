@@ -11,6 +11,7 @@ enum DefaultMessagesSuccess:String
     //@ANCHOR Categoria
     case CategoryAdd = 'Categoria adicionada!';
     case CategoryEdited = 'Categoria editada!';
+    case CategoryDeleted = 'Categoria removida!';
 
 }
 

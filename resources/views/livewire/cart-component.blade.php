@@ -8,13 +8,10 @@
                 <li class="item-link"><span>login</span></li>
             </ul>
         </div>
-        <div class=" main-content-area">
-            @if(Session::has('success_message'))
-                <div class="alert alert-success">
-                    <strong>Sucesso</strong> {{Session::get('success_message')}}
-                </div>
-            @endif
+        <div class="main-content-area">
 
+            @livewire('service.notification-component')
+            
             <div class="wrap-iten-in-cart">
                 @if($cart->count() > 0)
                 <h3 class="box-title">Products Name</h3>
