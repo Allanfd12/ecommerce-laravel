@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        @livewire('service.notification-component')
+                        <livewire:service.notification-component key="{{now()}}"/>
                         
                         <form class="form-horizontal" wire:submit.prevent="store">
                             <div class="form-group">

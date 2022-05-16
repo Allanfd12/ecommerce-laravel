@@ -14,9 +14,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        @livewire('service.notification-component')
-                        
+                    <div class="panel-body">                       
+                        <livewire:service.notification-component key="{{now()}}"/>
+
                         <form class="form-horizontal" wire:submit.prevent="update">
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Nome da Categoria</label>

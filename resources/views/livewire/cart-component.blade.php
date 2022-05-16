@@ -10,7 +10,7 @@
         </div>
         <div class="main-content-area">
 
-            @livewire('service.notification-component')
+            <livewire:service.notification-component key="{{now()}}"/>
             
             <div class="wrap-iten-in-cart">
                 @if($cart->count() > 0)

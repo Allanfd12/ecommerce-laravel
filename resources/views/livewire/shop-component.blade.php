@@ -12,7 +12,7 @@
 
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                 
-            @livewire('service.notification-component')
+            <livewire:service.notification-component key="{{now()}}"/>
 
                 <div class="banner-shop">
                     <a href="#" class="banner-link">

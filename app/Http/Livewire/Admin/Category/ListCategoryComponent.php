@@ -30,9 +30,9 @@ class ListCategoryComponent extends Component
         )->layout('layouts.padrao');
     }
 
-    public function delete($id)
+    public function deleteCategory($slug)
     {
-        $category = Category::find($id);
+        $category = Category::where('slug', $slug)->first();
         $category->delete();
         ViewNotifierService::success(DefaultMessagesSuccess::CategoryDeleted);
     }

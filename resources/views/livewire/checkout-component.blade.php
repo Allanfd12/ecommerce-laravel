@@ -10,7 +10,7 @@
         </div>
         <div class=" main-content-area">
             
-            @livewire('service.notification-component')
+            <livewire:service.notification-component key="{{now()}}"/>
             <div class="wrap-address-billing">
                 <h3 class="box-title">Billing Address</h3>
                 <form action="#" method="get" name="frm-billing">

@@ -25,7 +25,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        @livewire('service.notification-component')
+                        <livewire:service.notification-component key="{{now()}}"/>
+                        
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -44,7 +45,7 @@
                                         <td>
                                             <a href="{{route('admin.category.edit',['slug'=>$category->slug])}}" ><i class="fa fa-edit fa-2x"></i></a>
                                             
-                                            <a href="" ><i class="fa fa-trash fa-2x"></i></a>
+                                            <a href="#" wire:click.prevent="deleteCategory('{{$category->slug}}')"><i class="fa fa-trash fa-2x text-danger"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
