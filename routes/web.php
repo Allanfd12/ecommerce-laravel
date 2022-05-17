@@ -14,6 +14,7 @@ use \App\Http\Livewire\Admin\AdminDashboardComponent as AdminDashboardComponent;
 use \App\Http\Livewire\Admin\Category\ListCategoryComponent as ListCategoryComponent;
 use \App\Http\Livewire\Admin\Category\AddCategoryComponent as AddCategoryComponent;
 use \App\Http\Livewire\Admin\Category\EditCategoryComponent as EditCategoryComponent;
+use \App\Http\Livewire\Admin\Product\ListProductComponent as ListProductComponent;
 
 
 /*
@@ -27,6 +28,7 @@ use \App\Http\Livewire\Admin\Category\EditCategoryComponent as EditCategoryCompo
 |
 */
 
+//@ANCHOR Rotas abertas
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/shop',ShopComponent::class)->name('shop');
 Route::get('/cart',CartComponent::class)->name('cart');
@@ -38,17 +40,30 @@ Route::get('/search',SearchComponent::class)->name('search');
 
 
 
-//autenticação normal
+//@ANCHOR Clientes autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
 
 });
 
 
-//autenticação para admins
+//@ANCHOR Administradores autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
-    Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
-    Route::get('/admin/category',ListCategoryComponent::class)->name('admin.categories');
-    Route::get('/admin/category/add',AddCategoryComponent::class)->name('admin.category.add');
-    Route::get('/admin/category/edit/{slug}',EditCategoryComponent::class)->name('admin.category.edit');
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
+
+        //@ANCHOR ADM Categorias
+        Route::prefix('category')->group(function () {
+            Route::get('/',ListCategoryComponent::class)->name('admin.categories');
+            Route::get('/category/add',AddCategoryComponent::class)->name('admin.category.add');
+            Route::get('/category/edit/{slug}',EditCategoryComponent::class)->name('admin.category.edit');
+        });
+
+        //@ANCHOR ADM Produtos
+        Route::prefix('product')->group(function () {
+            Route::get('/',ListProductComponent::class)->name('admin.products');
+        });
+
+    });
 });

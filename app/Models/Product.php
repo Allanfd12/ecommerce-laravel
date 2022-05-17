@@ -12,29 +12,6 @@ class Product extends Model
     protected $table = 'products';
     
     /**
-     * numberDecimalCases - Define o numero de casas decimais
-     *
-     * @var int
-     */
-    private $numberDecimalCases = 2;
-    
-    /**
-     * defaultMonetaryUnit - Define o simbolo padrao para o valor monetario
-     *
-     * @var string
-     */
-    private $defaultMonetaryUnit = 'R$';
-
-    /**
-     * Retorna o valor monetario formatado
-     *
-     * @return string
-     */
-    public function getFormattedPrice() : String {
-        return $this->defaultMonetaryUnit.' '. number_format($this->getPrice(), $this->numberDecimalCases, ',', '.');
-    }
-
-    /**
      * Retorna o valor monetario sem formatacao
      * 
      * @return float
@@ -54,6 +31,11 @@ class Product extends Model
         //TODO: obter imagem do banco de dados
 
         return $this->image;
+    }
+
+    public function category(){
+
+        return $this->belongsTo(Category::class,'category_id');
     }
 
 }
