@@ -65,8 +65,7 @@ class SearchComponent extends Component
     
     private IProductRepository $productRepository;
 
-    public function mount(IProductRepository $productRepository){
-        $this->productRepository = $productRepository;
+    public function mount(){
         $this->fill(request()->only('search','category_slug'));
 
         $category = Category::where('slug', $this->category_slug)->first();
@@ -79,6 +78,8 @@ class SearchComponent extends Component
     use WithPagination;
     public function render()
     {
+        $this->productRepository = app()->make(IProductRepository::class);
+
         $search = $this->productRepository->SearchProducts($this->search, $this->category_id);
         $products = $this->productRepository->getSortedProducts($this->sort_method,$search)
                         ->paginate($this->productsPerPage);

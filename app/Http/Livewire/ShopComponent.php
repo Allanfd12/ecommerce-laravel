@@ -36,14 +36,11 @@ class ShopComponent extends Component
     public $formater = FormaterService::class;
 
     private IProductRepository $productRepository;
-
-    public function mount(IProductRepository $productRepository){
-        $this->productRepository = $productRepository;
-    }
+    
     use WithPagination;
     public function render()
     {
-        
+        $this->productRepository = app()->make(IProductRepository::class);
         $products = $this->productRepository->getSortedProducts($this->sort_method)->paginate($this->productsPerPage);
 
         $categories = Category::all();

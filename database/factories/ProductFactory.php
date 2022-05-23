@@ -17,7 +17,7 @@ class ProductFactory extends Factory
     public function definition()
     {
 
-        $Product_name = $this->faker->unique()->words(2, true);
+        $Product_name = $this->faker->unique()->words(3, true);
         $Product_slug = Str::slug($Product_name);
         return [
             'name' => $Product_name,
@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraphs(3, true),
             'regular_price' => $this->faker->randomFloat(2, 1, 100),
             'sale_price' => $this->faker->randomFloat(2, 1, 100),
-            'sku' => $this->faker->unique()->numberBetween(1, 100),
+            'sku' => $this->faker->unique()->numberBetween(1, 10000),
             'stock_status' => $this->faker->randomElement(['in_stock', 'out_of_stock']),
             'featured' => $this->faker->boolean,
             'quantity' => $this->faker->randomDigit,

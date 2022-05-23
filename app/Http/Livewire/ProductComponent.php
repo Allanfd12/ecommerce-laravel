@@ -47,6 +47,8 @@ class ProductComponent extends Component
      */
     public $slug;
     
+    private IProductRepository $productRepository;
+
     public function mount($slug)
     {
         $this->slug = $slug;
@@ -55,6 +57,9 @@ class ProductComponent extends Component
 
     public function render()
     {
+        
+        $this->productRepository = app()->make(IProductRepository::class);
+        
         $popular_products = Product::inRandomOrder()->limit($this->totalPopularProductsPerPage)->get();
         $related_products = Product::where('category_id',$this->product->category_id)->inRandomOrder()->limit($this->totalRelatedProducts)->get();
         return view('livewire.product-component',

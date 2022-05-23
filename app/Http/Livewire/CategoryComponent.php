@@ -10,6 +10,7 @@ use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
 use App\Service\Notifier\ViewNotifierService;
 use App\Service\Notifier\DefaultMessagesSuccess;
+use \App\Repository\interfaces\IProductRepository;
 
 class CategoryComponent extends Component
 {
@@ -48,8 +49,11 @@ class CategoryComponent extends Component
      */
     public $formater = FormaterService::class;
 
+    private IProductRepository $productRepository;
+
     public function mount($slug)
     {
+
         $this->slug = $slug;
         $this->category = Category::where('slug',$this->slug)->first();
 
@@ -58,7 +62,9 @@ class CategoryComponent extends Component
     use WithPagination;
     public function render()
     {
-        $products = Product::getSortedProducts($this->sort_method)->where('category_id',$this->category->id)->paginate($this->productsPerPage);
+        $this->productRepository = app()->make(IProductRepository::class);
+
+        $products =  $this->productRepository->getSortedProducts($this->sort_method)->where('category_id',$this->category->id)->paginate($this->productsPerPage);
 
         $categories = Category::all();
 
