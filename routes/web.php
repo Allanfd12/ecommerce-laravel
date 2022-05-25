@@ -57,14 +57,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         //@ANCHOR ADM Categorias
         Route::prefix('category')->group(function () {
             Route::get('/',ListCategoryComponent::class)->name('admin.categories');
-            Route::get('/category/add',AddCategoryComponent::class)->name('admin.category.add');
-            Route::get('/category/edit/{slug}',EditCategoryComponent::class)->name('admin.category.edit');
+            Route::get('/add',AddCategoryComponent::class)->name('admin.category.add');
+            Route::get('/edit/{slug}',EditCategoryComponent::class)->name('admin.category.edit');
         });
 
         //@ANCHOR ADM Produtos
         Route::prefix('product')->group(function () {
             Route::get('/',ListProductComponent::class)->name('admin.products');
-            Route::get('/product/add',AddProductComponent::class)->name('admin.product.add');
+            Route::get('/add',AddProductComponent::class)->name('admin.product.add');
         });
 
     });

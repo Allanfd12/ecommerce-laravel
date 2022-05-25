@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Nome da Categoria</label>
                                 <div class="col-md-4">
-                                    <input itype="text" placeholder="Nome da Categoria" class="form-control input-md"
+                                    <input type="text" placeholder="Nome da Categoria" class="form-control input-md"
                                         wire:model="name" required autofocus wire:keyup="generateSlug">
                                 </div>
                             </div>
