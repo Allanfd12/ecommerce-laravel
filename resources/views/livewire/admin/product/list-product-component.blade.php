@@ -49,6 +49,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $products->links('layouts.pagination') }}
                 </div>
             </div>
         </div>

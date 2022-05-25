@@ -15,6 +15,7 @@ use \App\Http\Livewire\Admin\Category\ListCategoryComponent as ListCategoryCompo
 use \App\Http\Livewire\Admin\Category\AddCategoryComponent as AddCategoryComponent;
 use \App\Http\Livewire\Admin\Category\EditCategoryComponent as EditCategoryComponent;
 use \App\Http\Livewire\Admin\Product\ListProductComponent as ListProductComponent;
+use \App\Http\Livewire\Admin\Product\AddProductComponent as AddProductComponent;
 
 
 /*
@@ -63,6 +64,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         //@ANCHOR ADM Produtos
         Route::prefix('product')->group(function () {
             Route::get('/',ListProductComponent::class)->name('admin.products');
+            Route::get('/product/add',AddProductComponent::class)->name('admin.product.add');
         });
 
     });
