@@ -37,6 +37,9 @@ Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 Route::get('/product/{slug}',ProductComponent::class)->name('product.detail');
 Route::get('/category/{slug}',CategoryComponent::class)->name('category.detail');
 Route::get('/search',SearchComponent::class)->name('search');
+Route::get('/vue',function(){
+    return view('welcome');
+})->name('vue.index');
 
 
 
