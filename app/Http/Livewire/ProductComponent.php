@@ -8,6 +8,7 @@ use App\Service\Cart\CartService;
 use App\Service\Formater\FormaterService;
 use App\Service\Notifier\ViewNotifierService;
 use App\Service\Notifier\DefaultMessagesSuccess;
+use \App\Repository\interfaces\IProductRepository;
 
 class ProductComponent extends Component
 {
