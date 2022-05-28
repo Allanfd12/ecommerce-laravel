@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
     
+    protected $fillable = ['name', 'slug'];
+
     /**
      * table - Define a tabela do banco de dados
      *

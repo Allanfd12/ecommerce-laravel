@@ -7,8 +7,10 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
-const Vue = createApp({});
+import router from './routes';
+import ListCategoryComponent from "./components/admin/category/ListCategoryComponent.vue";
 
+const Vue = createApp({}).use(router);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,6 +24,8 @@ const Vue = createApp({});
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('list-category-component', ListCategoryComponent); 
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
