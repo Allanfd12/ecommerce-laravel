@@ -9,7 +9,10 @@
                                 <h2 style="font-size:12pt; margin-top:10px">Todas as Categorias</h2>
                             </div>
                             <div class="col-md-6">
-                                <a href="#" class="btn btn-success pull-right">Adicionar Nova Categoria</a>
+                                <router-link :to="{ name: 'category.create' }" class="btn btn-primary pull-right">
+                                    <i class="fa fa-plus"></i>
+                                    Adicionar Nova Categoria
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -34,8 +37,7 @@
                                         <td>{{ category.slug }}</td>
                                         <td>
                                             <a href="#" ><i class="fa fa-edit fa-2x"></i></a>
-                                            
-                                            <a href="#" ><i class="fa fa-trash fa-2x text-danger"></i></a>
+                                            <a href="#" @click="deleteCategory(category.id)" ><i class="fa fa-trash fa-2x text-danger"></i></a>
                                         </td>
                                     </tr>
                                 </template>
@@ -54,12 +56,21 @@ import { onMounted } from 'vue'
 
     export default {
         setup(){
-            const {categories,getCategories} = useCategories()
+            const {categories,getCategories,destroyCategory} = useCategories()
 
             onMounted(getCategories) 
 
+            const deleteCategory = async(id) => {
+                console.log(id);
+                if(!confirm('Deseja realmente excluir esta categoria?')){ return;}
+
+                await destroyCategory(id);
+                await getCategories();
+            }
+
             return{
-                categories
+                categories,
+                deleteCategory
             }
         }
     }

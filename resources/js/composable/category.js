@@ -5,14 +5,17 @@ export default function useCategories(){
     const categories = ref([]);
 
     const getCategories = async()=>{
-        console.log('getCategories');
         let response = await axios.get('/api/categories'); 
         categories.value = response.data.data;
-        console.log(response.data);
+    }
+
+    const destroyCategory = async (id)=>{
+        await axios.delete('/api/categories/'+id); 
     }
 
     return {
         categories,
-        getCategories
+        getCategories,
+        destroyCategory
     }
 }
