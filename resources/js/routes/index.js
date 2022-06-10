@@ -6,11 +6,11 @@ import addCategoryComponent from "../components/admin/category/AddCategoryCompon
 const routes = [
     {
         path: "/vue",
-        name: "category.list",
+        name: "category.index",
         component: ListCategoryComponent
     },
     {
-        path: "/admin/category/add",
+        path: "/vue/admin/category/add",
         name: "category.create",
         component: addCategoryComponent
     },

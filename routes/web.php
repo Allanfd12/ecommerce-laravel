@@ -37,9 +37,6 @@ Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 Route::get('/product/{slug}',ProductComponent::class)->name('product.detail');
 Route::get('/category/{slug}',CategoryComponent::class)->name('category.detail');
 Route::get('/search',SearchComponent::class)->name('search');
-Route::get('/vue',function(){
-    return view('welcome');
-})->name('vue.index');
 
 
 
@@ -54,6 +51,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 //@ANCHOR Administradores autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
 
+    Route::get('/vue',function(){
+        return view('welcome');
+    })->name('vue.index');
+    Route::view('/vue/{any}', 'welcome')->where('any', '.*');
+    
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
 
