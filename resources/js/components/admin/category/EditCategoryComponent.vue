@@ -7,7 +7,7 @@
                     <div class="panel-heading ">
                         <div class="row ">
                             <div class="col-md-6 ">
-                                <h2 style="font-size:12pt; margin-top:10px">Adicionar nova Categoria</h2>
+                                <h2 style="font-size:12pt; margin-top:10px">Editar Categoria</h2>
                             </div>
                             <div class="col-md-6">
                                  <router-link :to="{ name: 'category.index' }" class="btn btn-primary pull-right">
@@ -25,14 +25,14 @@
                                 <label for="name" class="col-md-4 mb-1 control-label">Nome da Categoria</label>
                                 <div class="col-md-4">
                                     <input type="text" placeholder="Nome da Categoria" class="form-control input-md"
-                                          autofocus required v-model="form.name" v-on:keyup="getSlug">
+                                          autofocus required v-model="category.name" v-on:keyup="getSlug">
                                 </div>
                             </div>
                             <div class="form-group p-2">
                                 <label for="slug" class="col-md-4 mb-1 control-label">Slug da Categoria</label>
                                 <div class="col-md-4">
                                     <input id="slug" type="text" placeholder="Slug da Categoria"
-                                        class="form-control input-md" required  autofocus v-model="form.slug">
+                                        class="form-control input-md" required  autofocus v-model="category.slug">
                                 </div>
                             </div>
                             <div class="form-group p-2">
@@ -49,29 +49,33 @@
 </div>
 </template>
 <script>
-import {reactive} from 'vue';
+import {onMounted, reactive} from 'vue';
 import useCategories from '../../../composable/category';
 import useFormater from '../../../composable/formater';
 
 export default {
-    
-    setup() {
-       const form = reactive({
-            'name' :'',
-            'slug' :'',
-        })
+    props: {
+            id: {
+                type: Number,
+                required: true
+            }
+        },
+    setup(props) {
+
         const {generateSlug} =useFormater();
-        const {erros, storeCategory} = useCategories();
+        const {category,getCategory, erros, updateCategory} = useCategories();
         
+        onMounted(getCategory(props.id))
+
         const saveCategory = async() =>{
-            await storeCategory({...form});
+            await updateCategory(props.id);
         }
         const getSlug = () =>{
-           form.slug =  generateSlug(form.name);
+           category.value.slug =  generateSlug(category.value.name);
         }
 
         return{
-            form,
+            category,
             erros,
             saveCategory,
             getSlug

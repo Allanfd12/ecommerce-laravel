@@ -36,7 +36,10 @@
                                         <td>{{ category.name }}</td>
                                         <td>{{ category.slug }}</td>
                                         <td>
-                                            <a href="#" ><i class="fa fa-edit fa-2x"></i></a>
+                                            <router-link :to="{ name: 'category.edit', params:{id:category.id} }">
+                                                <i class="fa fa-edit fa-2x"></i>
+                                            </router-link>
+
                                             <a href="#" @click="deleteCategory(category.id)" ><i class="fa fa-trash fa-2x text-danger"></i></a>
                                         </td>
                                     </tr>
@@ -61,7 +64,7 @@ import { onMounted } from 'vue'
             onMounted(getCategories) 
 
             const deleteCategory = async(id) => {
-                console.log(id);
+
                 if(!confirm('Deseja realmente excluir esta categoria?')){ return;}
 
                 await destroyCategory(id);
