@@ -8,7 +8,17 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 import router from './routes';
-import ListCategoryComponent from "./components/admin/category/ListCategoryComponent.vue";
+
+window.axios.interceptors.response.use(function (response) {
+
+    return response;
+  }, function (error) {
+    if(error.response.status == 401 || error.response.status ==419){
+        router.push({ name: 'login' });
+    }
+    return Promise.reject(error);
+  });
+
 
 const Vue = createApp({}).use(router);
 /**
@@ -23,7 +33,7 @@ const Vue = createApp({}).use(router);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.component('list-category-component', ListCategoryComponent); 
+//Vue.component('list-category-component', ListCategoryComponent); 
 
 
 /**

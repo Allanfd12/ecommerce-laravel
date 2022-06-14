@@ -1,0 +1,134 @@
+<template>
+  <section class=" gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div
+            class="card background-custom text-white"
+            style="border-radius: 1rem"
+          >
+            <div class="card-body px-5 py-4 text-center">
+              <form class="md-5 mt-md-4" @submit.prevent="registrar">
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-3">
+                  Por favor insira seu login e senha
+                </p>
+                <div class="mt-2 mb-6 text-sm text-danger">
+                  <strong>{{ erros }}</strong>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label">Nome</label>
+                  <input
+                    type="text"
+                    required
+                    v-model="form.name"
+                    class="form-control form-control-lg"
+                    placeholder="Nome"
+                  />
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    required
+                    v-model="form.email"
+                    class="form-control form-control-lg"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label">Senha</label>
+                  <input
+                    type="password"
+                    required
+                    v-model="form.password"
+                    class="form-control form-control-lg"
+                    placeholder="Senha"
+                  />
+                </div>
+                  <div class="form-outline form-white mb-4">
+                  <label class="form-label">Confirmar senha</label>
+                  <input
+                    type="password"
+                    required
+                    v-model="form.password_confirmation"
+                    class="form-control form-control-lg"
+                    placeholder="Senha"
+                  />
+                </div>
+
+                <button class="btn btn-outline-light btn-lg px-5 mt-4"
+                  type="submit"
+                >
+                  Registrar
+                </button>
+              </form>
+
+              <div>
+                <p class="mb-0">
+                  Já tem uma conta?
+
+                  <router-link
+                    :to="{ name: 'login' }"
+                    class="text-white-50 fw-bold"
+                  >
+                    Registrar
+                  </router-link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+<style scoped>
+.gradient-custom {
+  min-height: 100vh;
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(203, 17, 17),
+    rgb(252, 37, 127)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgb(204, 28, 72), rgb(204, 47, 16));
+}
+.background-custom {
+  background: #10000ae1;
+}
+</style>
+
+<script>
+import { reactive } from "vue";
+import useAuthentication from '../../../composable/authentication';
+
+export default {
+  setup() {
+
+    const form = reactive({
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: ""
+    });
+    const {erros, register} =useAuthentication();
+
+    const registrar = async () => {
+      await register({...form});
+    };
+
+    return {
+      form,
+      registrar,
+      erros,
+    };
+  },
+};
+</script>

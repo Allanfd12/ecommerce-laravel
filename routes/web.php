@@ -16,6 +16,7 @@ use \App\Http\Livewire\Admin\Category\AddCategoryComponent as AddCategoryCompone
 use \App\Http\Livewire\Admin\Category\EditCategoryComponent as EditCategoryComponent;
 use \App\Http\Livewire\Admin\Product\ListProductComponent as ListProductComponent;
 use \App\Http\Livewire\Admin\Product\AddProductComponent as AddProductComponent;
+use App\Http\Controllers\Auth\Api\LoginController as LoginController;
 
 
 /*
@@ -40,7 +41,6 @@ Route::get('/search',SearchComponent::class)->name('search');
 
 
 
-
 //@ANCHOR Clientes autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
@@ -51,10 +51,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 //@ANCHOR Administradores autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdmin'])->group(function () {
 
-    Route::get('/vue',function(){
-        return view('welcome');
-    })->name('vue.index');
-    Route::view('/vue/{any}', 'welcome')->where('any', '.*');
+    
+
     
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
@@ -74,3 +72,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     });
 });
+
+Route::view('/vue', 'welcome')->name('vue.index');
+Route::view('/vue/{any}', 'welcome')->where('any', '.*');

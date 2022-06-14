@@ -20,6 +20,9 @@ class AuthAdmin
         if(auth()->user()->isAdmin()) {
             return $next($request);
         }else{
+            if($request->ajax()) {
+                return response('Unauthorized.', 401);
+            }
             return redirect()->route('login');
         }
         return $next($request);
