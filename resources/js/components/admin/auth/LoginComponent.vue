@@ -1,5 +1,5 @@
 <template>
-  <section class="vh-100 gradient-custom">
+  <section>
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -66,20 +66,6 @@
   </section>
 </template>
 <style scoped>
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #6a11cb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right,
-    rgb(203, 17, 17),
-    rgb(252, 37, 127)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgb(204, 28, 72), rgb(204, 47, 16));
-}
 .background-custom {
   background: #10000ae1;
 }
@@ -87,19 +73,18 @@
 
 <script>
 import { reactive } from "vue";
-import useAuthentication from '../../../composable/authentication';
+import useAuthentication from "../../../composable/authentication";
 
 export default {
   setup() {
-
     const form = reactive({
       email: "",
       password: "",
     });
-    const {erros, login} =useAuthentication();
+    const { erros, login } = useAuthentication();
 
     const logar = async () => {
-      await login({...form});
+      await login({ ...form });
     };
 
     return {
