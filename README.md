@@ -14,7 +14,10 @@ Adaptação do curso Ecommerce com Laravel 8(https://youtube.com/playlist?list=P
 Versão minima do PHP 8.1
 
 ## Inicialização
+Crie uma database e configure ela dentro do arquivo .env
+
 Rode os comandos 
  - composer install
- - run npm watch
+ - npm install
+ - npm run watch
  - php artisan migrate:fresh --seed
