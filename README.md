@@ -11,7 +11,7 @@ Adaptação do curso Ecommerce com Laravel 8(https://youtube.com/playlist?list=P
 
 
 ## Requisitos basicos
-Versão minima do PHP 8.1
+Versão minima do PHP 8.0
 
 ## Inicialização
 Crie uma database e configure ela dentro do arquivo .env
