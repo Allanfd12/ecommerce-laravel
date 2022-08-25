@@ -1,5 +1,8 @@
+## Veja em ação
+https://ecommerce-laravel.azurewebsites.net/
+
 ## Projeto de criação de um back-end/ecommerce utilizando Livewire, Jetstream, Laravel 9 e Vue.js 3
-Adaptação do curso Ecommerce com Laravel 8(https://youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)
+Adaptação do curso Ecommerce com Laravel 8 (https://youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)
 
 ![image](https://user-images.githubusercontent.com/75325265/173957788-510b93d3-d564-4396-9fc8-c7150b43c841.png)
 
