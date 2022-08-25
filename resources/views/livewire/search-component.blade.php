@@ -179,7 +179,7 @@
                                 <div class="product product-widget-style">
                                     <div class="thumbnnail">
                                         <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{asset('assets/images/products/digital_01.jpg')}}" alt=""></figure>
+                                            <figure><img src="{{asset('assets/images/products/digital_1.jpg')}}" alt=""></figure>
                                         </a>
                                     </div>
                                     <div class="product-info">
